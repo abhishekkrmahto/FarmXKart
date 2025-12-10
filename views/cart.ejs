@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmX kart Cart</title>
+  <link rel="stylesheet" href="/css/cart.css">
+</head>
+
+<body>
+
+  <div class="homeBtn">
+    <button id="homeBtn" style="
+          position: absolute;
+          top: 10px;
+          left: 20px;
+          background-color: rgba(0, 0, 255, 0.734);
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          font-weight: 600;
+          border-radius: 20px;
+          cursor: pointer;
+        ">
+      HOME
+    </button>
+    <div class="container">
+      <h1>FarmX kart Cart</h1>
+
+      <div class="products">
+        <div class="product">
+          <img src="/images/fuites/avacardo.jpg">
+          <h3>Avacado</h3>
+          <p>Price: ₹300/kg</p>
+          <p>Quantity:70 Kg</p>
+          <button id="remove-cart-btn" class="removeCartBtn">Remove From Cart</button>
+        </div>
+
+        <div class="product">
+          <img src="/images/fuites/orange.jpg">
+          <h3>Orange</h3>
+          <p>Price: ₹250/kg</p>
+          <p>Quantity:30 Kg</p>
+          <button id="remove-cart-btn" class="removeCartBtn">Remove From Cart</button>
+        </div>
+
+        <div class="product">
+          <img src="/images/vegitables/carrot.jpg">
+          <h3>Carrot</h3>
+          <p>Price: ₹40/kg</p>
+          <p>Quantity:40 Kg</p>
+          <button id="removeCartBtn" class="removeCartBtn">Remove From Cart</button>
+        </div>
+      </div>
+
+
+
+      <h2>Your Cart</h2>
+      <div id="cart"></div>
+      <h3 id="total">Total: ₹0</h3>
+      <div class="paymentBtn">
+        <button id="paymentBtn" style="background-color: rgb(105, 105, 0);
+              font-weight: 700;
+        ">Proceed Payment</button>
+      </div>
+    </div>
+    <script>
+      const homeBtn = document.getElementById("homeBtn");
+      homeBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = "/";
+      });
+
+      const totalElement = document.getElementById("total");
+      const cartContainer = document.querySelector(".products");
+      const paymentBtn = document.querySelector("#paymentBtn");
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      function renderCart() {
+        cartContainer.innerHTML = "";
+        let total = 0;
+
+        if (cart.length === 0) {
+          cartContainer.innerHTML = "<h2>Your cart is empty 😢</h2>";
+          totalElement.textContent = "Total: ₹0";
+          return;
+        }
+
+        cart.forEach((item, index) => {
+          const div = document.createElement("div");
+          div.classList.add("product");
+          div.innerHTML = `
+      <h3>${item.name}</h3>
+      <p>Price: ₹${item.price}/kg</p>
+      <p>Quantity: ${item.quantity} Kg</p>
+      <button class="removeCartBtn" data-index="${index}">Remove From Cart</button>
+    `;
+          cartContainer.appendChild(div);
+          total += item.price * item.quantity;
+        });
+
+        totalElement.textContent = `Total: ₹${total}`;
+      }
+
+      document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("removeCartBtn")) {
+          const index = e.target.getAttribute("data-index");
+          cart.splice(index, 1);
+          localStorage.setItem("cart", JSON.stringify(cart));
+          renderCart();
+        }
+      });
+
+      paymentBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        window.location.href = `/payment?total=${total}`;
+      });
+
+      renderCart();
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>

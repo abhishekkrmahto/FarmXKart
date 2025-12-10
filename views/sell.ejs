@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Farmer Sell Page</title>
+    <link rel="stylesheet" href="/css/sell.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <div class="head">
+          <div>
+            <h1>Farmer Sell Listing</h1>
+          </div>
+        </div>
+
+        <form id="sellForm" onsubmit="return false">
+          <div class="full">
+            <label for="name">Vegetable Name</label>
+            <input id="name" type="text" placeholder="e.g. Tomato" required />
+          </div>
+
+          <div>
+            <label for="photo">Photo</label>
+            <div class="filebox">
+              <label class="mutebtn" for="photo">Choose photo</label>
+              <input
+                id="photo"
+                type="file"
+                accept="image/*"
+                style="display: none"
+              />
+            </div>
+            <div class="note">
+              Accepted: JPG, PNG. Image previews automatically.
+            </div>
+          </div>
+
+          <div>
+            <label for="marketPrice">Market Price (per kg)</label>
+            <input
+              id="marketPrice"
+              type="number"
+              step="0.01"
+              min="0"
+              placeholder="e.g. 20"
+            />
+          </div>
+
+          <div>
+            <label for="sellPrice">Selling Price (per kg)</label>
+            <input
+              id="sellPrice"
+              type="number"
+              step="0.01"
+              min="0"
+              placeholder="e.g. 25"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="qty">Quantity (kg)</label>
+            <input
+              id="qty"
+              type="number"
+              step="0.01"
+              min="0"
+              placeholder="e.g. 10"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="unit">Unit</label>
+            <select id="unit">
+              <option>kg</option>
+              <option>quintal</option>
+              <option>ton</option>
+            </select>
+          </div>
+
+          <div class="full">
+            <div class="summary">
+              <div class="summary-row">
+                <span>Total Price</span><span id="total">₹0.00</span>
+              </div>
+              <div class="summary-row">
+                <small>Estimated Profit</small><small id="profit">₹0.00</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="full actions">
+            <button class="btn" id="sellBtn">Sell</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/css/profile.css" />
+  </head>
+  <body><div class="homeBtn">
+      <button
+        id="homeBtn"
+        style="
+          position: absolute;
+          top: 10px;
+          left: 20px;
+          background-color: rgba(0, 0, 255, 0.734);
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          font-weight: 600;
+          border-radius: 20px;
+          cursor: pointer;
+        "
+      >
+        HOME
+      </button>
+    <div class="profile-container" style="position: relative">
+      <h2>User Profile</h2>
+      <div class="profile-info">
+        <p><strong>Name:</strong>Krishna</p>
+        <p><strong>Email:</strong>krishnapandit.com</p>
+        <p><strong>Address:</strong>Dumka,Jharkhand</p>
+      </div>
+      <button
+        style="
+          padding: 7px 7px;
+          border: none;
+          background-color: #007bff;
+          color: white;
+          font-weight: 600;
+          border-radius: 20px;
+          position: absolute;
+          top: 15px;
+          left: 10px;
+        "
+      >
+        Edit Profile
+      </button>
+
+      <div
+        style="
+          position: absolute;
+          top: 20px;
+          right: 20px;
+        "
+      >
+        <span class="coin">🪙</span><span class="coin-no">5</span>
+      </div>
+
+      <div class="profile-actions">
+        <button class="btn">My Orders</button>
+        <button class="btn">Govt Schemes</button>
+        <button class="btn logout">Logout</button>
+      </div>
+    </div>
+   <script>
+  const homeBtn = document.getElementById("homeBtn");
+  homeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "/";
+  });
+
+  document.querySelector(".btn:nth-child(1)").addEventListener("click", () => {
+    window.location.href = "/myorders";
+  });
+
+  document.querySelector(".btn:nth-child(2)").addEventListener("click", () => {
+    window.location.href = "/govtschemes";
+  });
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Govt Schemes - FarmX</title>
+  <link rel="stylesheet" href="/css/govtschemes.css">
+</head>
+<body>
+  <button id="homeBtn" style="
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    background-color: rgba(0, 0, 255, 0.734);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+  ">HOME</button>
+
+  <div class="scheme-container">
+    <h1>Government Schemes for Farmers 🌾</h1>
+
+    <div class="scheme-card">
+      <h2>PM Kisan Samman Nidhi</h2>
+      <p>₹6000 per year financial support to all eligible farmer families in 3 installments.</p>
+      <a href="https://pmkisan.gov.in/" target="_blank">Apply Now</a>
+    </div>
+
+    <div class="scheme-card">
+      <h2>Soil Health Card Scheme</h2>
+      <p>Helps farmers to understand the nutrient status of their soil and improve productivity.</p>
+      <a href="https://soilhealth.dac.gov.in/" target="_blank">Know More</a>
+    </div>
+
+    <div class="scheme-card">
+      <h2>PM Fasal Bima Yojana</h2>
+      <p>Provides insurance coverage for crop failure due to natural calamities.</p>
+      <a href="https://pmfby.gov.in/" target="_blank">Apply Here</a>
+    </div>
+
+    <div class="scheme-card">
+      <h2>Kisan Credit Card (KCC)</h2>
+      <p>Provides short-term credit to farmers for crop and allied agricultural activities.</p>
+      <a href="https://www.mygov.in/" target="_blank">Learn More</a>
+    </div>
+  </div>
+
+  <script>
+    const homeBtn = document.getElementById("homeBtn");
+    homeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.location.href = "/";
+    });
+  </script>
+</body>
+</html>

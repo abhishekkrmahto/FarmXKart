@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | FarmX Kart</title>
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+  <body>
+    <%- include("partials/header") %>
+    <section class="hero-section">
+      <div class="slider">
+        <img
+          id="slider-image"
+          src="/images/sliders/slider1.jpg"
+          alt="FarmX Banner"
+        />
+      </div>
+      <div class="hero-content">
+        <h1>Welcome to <span>FarmX Kart</span></h1>
+        <p>Bringing fresh farm products directly to your doorstep 🌾</p>
+        <a href="/shop" class="btn">Explore Now</a>
+      </div>
+    </section>
+
+    <footer style="text-align: center">
+      <p>© 2025 FarmX Kart. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const img = document.getElementById("slider-image");
+      const images = [
+        "/images/sliders/slider1.jpg",
+        "/images/sliders/slider3.jpg",
+        "/images/sliders/slider5.jpg",
+        "/images/sliders/slider7.jpg",
+        "/images/sliders/slider8.jpg",
+        "/images/sliders/slider9.jpg",
+        "/images/sliders/slider10.jpg",
+      ];
+      let i = 0;
+      setInterval(() => {
+        img.classList.add("fade-out");
+        setTimeout(() => {
+          img.src = images[i];
+          img.classList.remove("fade-out");
+          i = (i + 1) % images.length;
+        }, 500);
+      }, 4000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FarmX Kart - Payment</title>
+  <link rel="stylesheet" href="/css/payment.css">
+</head>
+
+<body>
+  <div class="addedPopup" id="addedPopup">
+    <h1>Order-Placed ✅</h1>
+  </div>
+
+  <div class="payment-container">
+    <h1>FarmX Payment Portal</h1>
+
+    <div class="summary-box">
+      <h2>Order Summary</h2>
+      <p>Total Amount: <span id="totalAmount">₹<%= total %></span></p>
+    </div>
+
+    <form id="paymentForm" action="/order-success" method="POST">
+      <h2>Delivery Details</h2>
+
+      <label>Full Name</label>
+      <input type="text" name="fullname" placeholder="Enter your full name" required>
+
+      <label>Phone Number</label>
+      <input type="tel" name="phone" placeholder="Enter your phone number" required>
+
+      <label>Address</label>
+      <textarea name="address" placeholder="Enter full delivery address" required></textarea>
+
+      <label>City</label>
+      <input type="text" name="city" placeholder="Enter your city" required>
+
+      <label>Payment Method</label>
+      <select name="paymentMethod" required>
+        <option value="">Select Payment Mode</option>
+        <option value="COD">Cash on Delivery</option>
+        <option value="UPI">UPI / Wallet</option>
+        <option value="Card">Credit / Debit Card</option>
+      </select>
+      <select name="discount" required>
+        <option value="">Discount</option>
+        <option value="COD">Coupon 50rs/-</option>
+        <option value="UPI">Redeem X-coin 🪙</option>
+      </select>
+
+      <button type="submit" class="placeOrderBtn" id="placeOrderBtn">Place Order</button>
+    </form>
+
+    <div class="delivery-info">
+      <p>Estimated Delivery: <strong id="deliveryDays"></strong></p>
+    </div>
+  </div>
+
+  <script>
+  const days = Math.floor(Math.random() * 3) + 3;
+  document.getElementById("deliveryDays").textContent = `${days} Days`;
+
+  const addedPopup = document.getElementById("addedPopup");
+  addedPopup.style.display = "none";
+
+  const placeOrderBtn = document.getElementById("placeOrderBtn");
+
+  placeOrderBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    addedPopup.style.display = "flex";
+    addedPopup.style.justifyContent = "center";
+    addedPopup.style.alignItems = "center";
+    addedPopup.style.position = "fixed";
+    addedPopup.style.top = "30%";
+    addedPopup.style.left = "532.2px";
+    addedPopup.style.width = "30%";
+    addedPopup.style.height = "50vh";
+    addedPopup.style.background = "rgba(0,0,0,0.6)";
+    addedPopup.style.color = "white";
+    addedPopup.style.fontSize = "2rem";
+    addedPopup.style.zIndex = "999";
+
+    setTimeout(() => {
+      addedPopup.style.display = "none";
+      window.location.href = "/";
+    }, 1500);
+  });
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmx Kart Shop</title>
+    <link rel="stylesheet" href="/css/shop.css">
+</head>
+
+<body>
+    <h1 style="margin-bottom: 10px; text-align: center;">FarmX kart Shopping Page</h1>
+
+    <div class="container">
+        <input id="searchBtn" type="text" placeholder="Search-Items...🔍"
+            style="padding: 10px 10px; margin-bottom: 10px; border-radius: 10px;">
+        <div>
+            <div class="products">
+                <div class="product">
+                    <img src="/images/fuites/apple.jpg">
+                    <h3>Apple</h3>
+                    <p>Price: ₹300/kg</p>
+                    <p>Quantity:70 Kg</p>
+                    <p>Fresh and organic items</p>
+                    <button class="addCartBtn">Add To Cart</button>
+                </div>
+
+                <div class="product">
+                    <img src="/images/fuites/orange.jpg">
+                    <h3>Orange</h3>
+                    <p>Price: ₹250/kg</p>
+                    <p>Quantity:30 Kg</p>
+                    <p>Fresh and organic items</p>
+                    <button class="addCartBtn">Add To Cart</button>
+                </div>
+
+                <div class="product">
+                    <img src="/images/vegitables/carrot.jpg">
+                    <h3>Carrot</h3>
+                    <p>Price: ₹40/kg</p>
+                    <p>Quantity:40 Kg</p>
+                    <p>Fresh and organic items</p>
+                    <button class="addCartBtn">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="products">
+                <div class="product">
+                    <img src="/images/fuites/lemon.jpg">
+                    <h3>Lemon</h3>
+                    <p>Price: ₹300/kg</p>
+                    <p>Quantity:70 Kg</p>
+                    <p>Fresh and organic items</p>
+                    <button class="addCartBtn">Add To Cart</button>
+                </div>
+
+                <div class="product">
+                    <img src="/images/vegitables/mushrooms.jpg">
+                    <h3>Mushrooms</h3>
+                    <p>Price: ₹250/kg</p>
+                    <p>Quantity:30 Kg</p>
+                    <p>Fresh and organic items</p>
+                    <button class="addCartBtn">Add To Cart</button>
+                </div>
+
+                <div class="product">
+                    <img src="/images/vegitables/brinjals.jpg">
+                    <h3>Brinjal</h3>
+                    <p>Price: ₹40/kg</p>
+                    <p>Quantity:40 Kg</p>
+                    <p>Fresh and organic items</p>
+                    <button class="addCartBtn">Add To Cart</button>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    </div>
+    <script>
+        const addCartBtns = document.querySelectorAll(".addCartBtn");
+
+        addCartBtns.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                const product = btn.parentElement;
+                const name = product.querySelector("h3").innerText;
+                const priceText = product.querySelector("p:nth-of-type(1)").innerText;
+                const quantityText = product.querySelector("p:nth-of-type(2)").innerText;
+
+                const price = parseInt(priceText.replace(/\D/g, ""));
+                const quantity = parseInt(quantityText.replace(/\D/g, ""));
+
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                const existing = cart.find((item) => item.name === name);
+                if (existing) {
+                    existing.quantity += quantity;
+                } else {
+                    cart.push({ name, price, quantity });
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+
+                const popup = document.getElementById("addedPopup");
+                popup.style.display = "flex";
+                setTimeout(() => popup.style.display = "none", 1500);
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

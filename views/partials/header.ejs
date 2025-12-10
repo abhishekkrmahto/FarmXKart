@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>navigation</title>
+    <link rel="stylesheet" href="/css/navbar.css" />
+  </head>
+  <body>
+    <div class="nav">
+      <div class="left">
+        <img src="/images/logo.png" alt="logo" />
+        <input type="text" placeholder="Search" id="search" />
+      </div>
+      <div class="middle" style="display: flex; gap: 10px">
+        <input type="text" id="address" placeholder="Enter City" />
+        <button
+          style="padding: 5px 5px; background: none; border: none;"
+          id="weatherInput"
+        >
+          🔍︎
+        </button>
+        <h2 id="tempdetails"></h2>
+      </div>
+      <div class="right">
+        <button id="profile">🙎🏻‍♂️</button>
+        <button class="login" id="login">Log-in</button>
+        <button class="sell" id="sell">Sell</button>
+        <button class="cart" id="cartview">🛒</button>
+        <select class="select" name="language" id="language">
+          <option value="English">English</option>
+          <option value="Hindi">Hindi</option>
+          <option value="Telgu">Telgu</option>
+          <option value="Kannad">Kannad</option>
+          <option value="Tamil">Tamil</option>
+        </select>
+      </div>
+    </div>
+    <script>
+      // ========== LOGIN REDIRECT ==========
+      const loginBtn = document.getElementById("login");
+      loginBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = "/login";
+      });
+
+      // ==============sell redirect========
+      const sell = document.getElementById("sell");
+      sell.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = "/sell";
+      });
+
+      // ========== PROFILE REDIRECT ==========
+      const profile = document.getElementById("profile");
+      profile.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = "/profile";
+      });
+
+      // ===========CART REDIRECT==========
+      const cartview = document.getElementById("cartview");
+      cartview.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = "/cartview";
+      });
+
+      // ========== WEATHER SECTION ==========
+      const tempdetails = document.getElementById("tempdetails");
+      const apiKey = "FA437MJUSZT5KL2KJGTK7N9TG";
+
+      async function getWeather() {
+        const address = document.getElementById("address");
+        const loc = address.value.trim();
+
+        if (!loc) {
+          tempdetails.innerText = "Please enter a location!";
+          return;
+        }
+
+        const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${encodeURIComponent(
+          loc
+        )}?unitGroup=metric&contentType=json&key=${apiKey}`;
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+
+          console.log(data);
+          tempdetails.innerText = `Location: ${data.address}\nTemp: ${data.days[0].temp}°C Humid: ${data.days[0].humidity}\n Desc: ${data.days[0].description}`;
+        } catch (err) {
+          console.error("Error fetching weather:", err);
+          tempdetails.innerText = "Failed to fetch weather data.";
+        }
+      }
+
+      // ========== BUTTON CLICK ==========
+      const weatherInput = document.getElementById("weatherInput");
+      weatherInput.addEventListener("click", (e) => {
+        e.preventDefault();
+        getWeather();
+      });
+    </script>
+  </body>
+</html>

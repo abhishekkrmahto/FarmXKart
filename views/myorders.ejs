@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - FarmX</title>
+    <link rel="stylesheet" href="/css/myorders.css">
+</head>
+
+<body>
+    <div class="orders-container">
+        <h1>My Orders 🛒</h1>
+
+        <% if (orders && orders.length> 0) { %>
+            <% orders.forEach((order, index)=> { %>
+                <div class="order-card">
+                    <div class="order-header">
+                        <h2>Order #<%= order.id %>
+                        </h2>
+                        <span class="status <%= order.status ? order.status.toLowerCase() : 'unknown' %>">
+                            <%= order.status || 'Unknown' %>
+                        </span>
+
+                    </div>
+                    <div class="order-details">
+                        <p><strong>Date:</strong>
+                            <%= order.date %>
+                        </p>
+                        <p><strong>Amount:</strong> ₹<%= order.total %>
+                        </p>
+                        <p><strong>Payment Mode:</strong>
+                            <%= order.paymentMethod %>
+                        </p>
+                        <p><strong>Delivery:</strong> Estimated in <%= order.deliveryDays %> days</p>
+                        <p><strong>Address:</strong>
+                            <%= order.address %>
+                        </p>
+                    </div>
+                </div>
+                <% }) %>
+                    <% } else { %>
+                        <div class="no-orders">
+                            <h2>No Orders Found 😢</h2>
+                            <a href="/shop" class="shop-btn">Shop Now</a>
+                        </div>
+                        <% } %>
+    </div>
+</body>
+
+</html>
